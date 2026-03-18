@@ -3,155 +3,523 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | EMILE AG</title>
-    <!-- Boxicons -->
+    <title>Portfolio Web | EMILE AG</title>
+
+    <!-- BOX ICONS -->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /*===== VARIABLES CSS =====*/
+        :root {
+            --header-height: 3.5rem;
+            --first-color: #4A90E2;
+            --first-color-alt: #357ABD;
+            --title-color: #2c3e50;
+            --text-color: #5d6d7e;
+            --text-color-light: #91a1b1;
+            --body-color: #f4f7f6;
+            --container-color: #ffffff;
+            --body-font: 'Poppins', sans-serif;
+            
+            /* Glassmorphism Effect */
+            --glass: rgba(255, 255, 255, 0.7);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        /* Variables Mode Sombre */
+        body.dark-theme {
+            --title-color: #f1f3f2;
+            --text-color: #bdc3c7;
+            --body-color: #0b0e11;
+            --container-color: #15191d;
+            --glass: rgba(21, 25, 29, 0.8);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        /*===== BASE =====*/
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body-font);
+            font-size: 0.938rem;
+            background-color: var(--body-color);
+            color: var(--text-color);
+            transition: background-color 0.4s, color 0.4s;
+        }
+
+        h1, h2, h3 {
+            color: var(--title-color);
+            font-weight: 600;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        section {
+            padding: 4.5rem 0 2rem;
+        }
+
+        .section-title {
+            position: relative;
+            font-size: 2rem;
+            color: var(--title-color);
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background-color: var(--first-color);
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .bd-grid {
+            max-width: 1024px;
+            display: grid;
+            grid-template-columns: 100%;
+            margin-left: 1.5rem;
+            margin-right: 1.5rem;
+            gap: 1.5rem;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: var(--first-color);
+            color: #fff;
+            padding: .75rem 1.5rem;
+            border-radius: .5rem;
+            font-weight: 600;
+            transition: .3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: var(--first-color-alt);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /*===== HEADER =====*/
+        .l-header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            background-color: var(--glass);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+        }
+
+        .nav {
+            height: var(--header-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .nav__logo {
+            color: var(--first-color);
+            font-size: 1.25rem;
+        }
+
+        @media screen and (max-width: 767px) {
+            .nav__menu {
+                position: fixed;
+                top: -100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--container-color);
+                padding: 2rem 0;
+                transition: .4s;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+        }
+
+        .nav__list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            row-gap: 1.5rem;
+        }
+
+        .nav__link {
+            color: var(--title-color);
+            transition: .3s;
+        }
+
+        .nav__link:hover {
+            color: var(--first-color);
+        }
+
+        .nav__toggle, .change-theme {
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--title-color);
+        }
+
+        .show-menu {
+            top: var(--header-height) !important;
+        }
+
+        /* Active link */
+        .active-link {
+            color: var(--first-color) !important;
+        }
+
+        /*===== HOME =====*/
+        .home {
+            height: calc(100vh - var(--header-height));
+            row-gap: 2rem;
+        }
+
+        .home__data {
+            align-self: center;
+        }
+
+        .home__title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .home__title-color {
+            color: var(--first-color);
+        }
+
+        .home__social {
+            display: flex;
+            flex-direction: row;
+            column-gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .home__social-icon {
+            font-size: 1.5rem;
+            color: var(--first-color);
+            transition: .3s;
+        }
+
+        .home__social-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .home__img {
+            display: flex;
+            justify-content: center;
+        }
+
+        .home__blob {
+            width: 300px;
+            fill: var(--first-color);
+        }
+
+        /*===== ABOUT =====*/
+        .about__container {
+            text-align: center;
+        }
+
+        .about__img {
+            justify-self: center;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .about__subtitle {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .about__text {
+            line-height: 1.6;
+        }
+
+        /*===== SKILLS =====*/
+        .skills__container {
+            row-gap: 2rem;
+        }
+
+        .skills__subtitle {
+            margin-bottom: 1.5rem;
+        }
+
+        .skills__data {
+            background-color: var(--container-color);
+            padding: 1rem;
+            border-radius: .5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            transition: .3s;
+        }
+
+        .skills__data:hover {
+            transform: scale(1.02);
+        }
+
+        .skills__names {
+            display: flex;
+            align-items: center;
+            column-gap: .5rem;
+        }
+
+        .skills__icon {
+            font-size: 1.5rem;
+            color: var(--first-color);
+        }
+
+        /*===== PROJECTS =====*/
+        .projects__container {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .project__card {
+            background-color: var(--container-color);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: .3s;
+        }
+
+        .project__card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project__img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project__data {
+            padding: 1.5rem;
+        }
+
+        .project__title {
+            font-size: 1.2rem;
+            margin-bottom: .5rem;
+        }
+
+        /*===== CONTACT =====*/
+        .contact__form {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact__input {
+            width: 100%;
+            padding: 1rem;
+            border-radius: .5rem;
+            border: 1px solid var(--text-color-light);
+            background-color: var(--container-color);
+            color: var(--title-color);
+            outline: none;
+            margin-bottom: 1.5rem;
+        }
+
+        /*===== FOOTER =====*/
+        .footer {
+            background-color: var(--container-color);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer__social {
+            display: flex;
+            justify-content: center;
+            column-gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .footer__icon {
+            font-size: 1.5rem;
+            color: var(--first-color);
+        }
+
+        /*===== MEDIA QUERIES =====*/
+        @media screen and (min-width: 768px) {
+            .bd-grid {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .nav {
+                height: calc(var(--header-height) + 1rem);
+            }
+
+            .nav__list {
+                flex-direction: row;
+                column-gap: 3rem;
+            }
+
+            .nav__toggle {
+                display: none;
+            }
+
+            .home__container {
+                grid-template-columns: repeat(2, 1fr);
+                align-items: center;
+                height: 100%;
+            }
+
+            .about__container {
+                grid-template-columns: repeat(2, 1fr);
+                align-items: center;
+                text-align: initial;
+            }
+        }
+    </style>
 </head>
 <body>
     <!--===== HEADER =====-->
-    <header class="header" id="header">
-        <nav class="nav container">
-            <a href="#" class="nav__logo">EMILE<span> AG</span></a>
+    <header class="l-header">
+        <nav class="nav bd-grid">
+            <div>
+                <a href="#" class="nav__logo">EMILE AG</a>
+            </div>
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
-                    <li class="nav__item"><a href="#home" class="nav__link active-link">Accueil</a></li>
-                    <li class="nav__item"><a href="#about" class="nav__link">À propos</a></li>
-                    <li class="nav__item"><a href="#skills" class="nav__link">Compétences</a></li>
-                    <li class="nav__item"><a href="#work" class="nav__link">Galerie</a></li>
+                    <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
                     <li class="nav__item"><a href="#projects" class="nav__link">Projets</a></li>
                     <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                    <li class="nav__item"><i class='bx bx-moon change-theme' id="theme-button"></i></li>
                 </ul>
-                <i class='bx bx-x nav__close' id="nav-close"></i>
             </div>
 
-            <div class="nav__btns">
-                <!-- Theme change button -->
-                <i class='bx bx-moon change-theme' id="theme-button"></i>
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-grid-alt'></i>
-                </div>
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
             </div>
         </nav>
     </header>
 
-    <main class="main">
+    <main class="l-main">
         <!--===== HOME =====-->
-        <section class="home section" id="home">
-            <div class="home__container container grid">
-                <div class="home__content grid">
-                    <div class="home__social">
-                        <a href="https://github.com/EMILEAG/" target="_blank" class="home__social-icon"><i class='bx bxl-github'></i></a>
-                        <a href="https://www.youtube.com/@emileag228" target="_blank" class="home__social-icon"><i class='bx bxl-youtube'></i></a>
-                        <a href="https://wa.me/22893896972" target="_blank" class="home__social-icon"><i class='bx bxl-whatsapp'></i></a>
-                    </div>
-
-                    <div class="home__img">
-                        <svg class="home__blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg">
-                            <mask id="mask0" mask-type="alpha">
-                                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 130.807 187.559 100.226 186.353C69.6454 185.147 41.0224 160.723 21.6103 129.362C2.1982 98.0011 -7.9904 59.7024 10.1517 31.0601C28.2938 2.41775 74.7739 -16.5687 117.406 10.7419C160.039 38.0525 174.043 10.8571 190.312 36.4879Z"/>
-                            </mask>
-                            <g mask="url(#mask0)">
-                                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 130.807 187.559 100.226 186.353C69.6454 185.147 41.0224 160.723 21.6103 129.362C2.1982 98.0011 -7.9904 59.7024 10.1517 31.0601C28.2938 2.41775 74.7739 -16.5687 117.406 10.7419C160.039 38.0525 174.043 10.8571 190.312 36.4879Z"/>
-                                <image class="home__blob-img" x="12" y="18" href="perfil.png"/>
-                            </g>
-                        </svg>
-                    </div>
-
-                    <div class="home__data">
-                        <h1 class="home__title">Salut, Je suis <span class="gradient-text">EMILE AG</span></h1>
-                        <h3 class="home__subtitle">Web Designer & Étudiant Réseaux</h3>
-                        <p class="home__description">Passionné par l'innovation numérique et fondateur d'AmiBa Groupe.</p>
-                        <a href="Cv Pro EMILE AG.pdf" download class="button button--flex">
-                            Télécharger CV <i class='bx bx-download button__icon'></i>
-                        </a>
-                    </div>
+        <section class="home bd-grid" id="home">
+            <div class="home__data">
+                <h1 class="home__title">Hi,<br>I am <span class="home__title-color">EMILE AG</span><br>Web Designer</h1>
+                <div class="home__social">
+                    <a href="https://github.com/EMILEAG/" target="_blank" class="home__social-icon"><i class='bx bxl-github' ></i></a>
+                    <a href="https://www.youtube.com/@emileag228" target="_blank" class="home__social-icon"><i class='bx bxl-youtube' ></i></a>
+                    <a href="https://wa.me/22893896972" target="_blank" class="home__social-icon"><i class='bx bxl-whatsapp' ></i></a>
+                    <a href="https://emileag228.github.io/AmiBa.Web/" target="_blank" class="home__social-icon"><i class='bx bx-globe'></i></a>
                 </div>
+                <a href="Cv Pro EMILE AG.pdf" download class="button">Download My Cv</a>
+            </div>
+
+            <div class="home__img">
+                <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg">
+                    <mask id="mask0" mask-type="alpha">
+                        <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
+                    </mask>
+                    <g mask="url(#mask0)">
+                        <rect x="0" y="0" width="500" height="500" fill="#4A90E2" />
+                        <image x="50" y="50" width="400" href="perfil.png" />
+                    </g>
+                </svg>
             </div>
         </section>
 
         <!--===== ABOUT =====-->
         <section class="about section" id="about">
-            <h2 class="section__title">À propos de moi</h2>
-            <span class="section__subtitle">Introduction</span>
-
-            <div class="about__container container grid">
-                <img src="about.jpg" alt="" class="about__img">
-                <div class="about__data">
-                    <p class="about__description">
-                        Agbabli Yawo Emile est un jeune professionnel dynamique spécialisé en développement web, 
-                        électrotechnique et gestion de projets digitaux. Actuellement à l'ESGIS, je me concentre sur 
-                        la cybersécurité, le cloud computing et l'IoT.
-                    </p>
-                    <div class="about__info">
-                        <div>
-                            <span class="about__info-title">03+</span>
-                            <span class="about__info-name">Années <br> d'exp.</span>
-                        </div>
-                        <div>
-                            <span class="about__info-title">15+</span>
-                            <span class="about__info-name">Projets <br> complétés</span>
-                        </div>
-                    </div>
+            <h2 class="section-title">About Me</h2>
+            <div class="about__container bd-grid">
+                <div class="about__img">
+                    <img src="about.jpg" alt="A propos de Emile">
+                </div>
+                <div>
+                    <h2 class="about__subtitle">I'am EMILE AG</h2>
+                    <p class="about__text">Agbabli Yawo Emile is a dynamic young professional passionate about information technology. Currently studying Computer Networks and Telecommunications at ESGIS. Open to collaboration, he aims to thrive in a cutting-edge tech environment, contributing to cybersecurity, cloud computing, and IoT.</p>
                 </div>
             </div>
         </section>
 
         <!--===== SKILLS =====-->
         <section class="skills section" id="skills">
-            <h2 class="section__title">Compétences</h2>
-            <div class="skills__container container grid">
-                <!-- Skill Set 1 -->
-                <div class="skills__content">
-                    <div class="skills__header">
-                        <i class='bx bx-code-alt skills__icon'></i>
-                        <h1 class="skills__title">Développement Web</h1>
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills__container bd-grid">
+                <div>
+                    <h2 class="skills__subtitle">Profesional Skills</h2>
+                    <div class="skills__data">
+                        <div class="skills__names"><i class='bx bxl-html5 skills__icon'></i> <span>HTML5 / CSS3</span></div>
+                        <span class="skills__percentage">90%</span>
                     </div>
-                    <div class="skills__list grid">
-                        <div class="skills__data">
-                            <div class="skills__titles"><h3 class="skills__name">HTML/CSS</h3><span class="skills__number">95%</span></div>
-                            <div class="skills__bar"><span class="skills__percentage" style="width: 95%"></span></div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__titles"><h3 class="skills__name">JavaScript</h3><span class="skills__number">65%</span></div>
-                            <div class="skills__bar"><span class="skills__percentage" style="width: 65%"></span></div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__titles"><h3 class="skills__name">PHP</h3><span class="skills__number">72%</span></div>
-                            <div class="skills__bar"><span class="skills__percentage" style="width: 72%"></span></div>
-                        </div>
+                    <div class="skills__data">
+                        <div class="skills__names"><i class='bx bxl-javascript skills__icon'></i> <span>JAVASCRIPT</span></div>
+                        <span class="skills__percentage">65%</span>
+                    </div>
+                    <div class="skills__data">
+                        <div class="skills__names"><i class='bx bxl-php skills__icon'></i> <span>PHP / SQL</span></div>
+                        <span class="skills__percentage">70%</span>
                     </div>
                 </div>
+                <img src="work3.jpg" alt="Skills image" class="about__img">
             </div>
         </section>
 
         <!--===== PROJECTS =====-->
         <section class="projects section" id="projects">
-            <h2 class="section__title">Projets Récents</h2>
-            <div class="projects__container container grid">
-                <!-- Project 1 -->
-                <article class="projects__card">
-                    <img src="amibachat.jpg" alt="" class="projects__img">
-                    <div class="projects__modal">
-                        <div>
-                            <h3 class="projects__title">AmiBa Chat</h3>
-                            <p class="projects__description">Plateforme de messagerie communautaire.</p>
-                            <a href="#" class="button button--small">Détails</a>
-                        </div>
+            <h2 class="section-title">Recent Projects</h2>
+            <div class="projects__container bd-grid">
+                <!-- AmiBa Chat -->
+                <article class="project__card">
+                    <img src="amibachat.jpg" class="project__img" alt="">
+                    <div class="project__data">
+                        <h3 class="project__title">AmiBa Chat</h3>
+                        <p>More than just messaging! Stay connected and express yourself within your community.</p>
                     </div>
                 </article>
-                <!-- Project 2 -->
-                <article class="projects__card">
-                    <img src="marketplace.jpg" alt="" class="projects__img">
-                    <div class="projects__modal">
-                        <div>
-                            <h3 class="projects__title">MarketPlace</h3>
-                            <p class="projects__description">Site e-commerce multi-vendeurs.</p>
-                            <a href="#" class="button button--small">Détails</a>
-                        </div>
+                <!-- MarketPlace -->
+                <article class="project__card">
+                    <img src="marketplace.jpg" class="project__img" alt="">
+                    <div class="project__data">
+                        <h3 class="project__title">MarketPlace</h3>
+                        <p>A fully functional online marketplace for users to publish and sell products for free.</p>
+                    </div>
+                </article>
+                <!-- Live Football -->
+                <article class="project__card">
+                    <img src="live.png" class="project__img" alt="">
+                    <div class="project__data">
+                        <h3 class="project__title">Live Football Platform</h3>
+                        <p>Web application to watch live football matches from around the world in real-time.</p>
                     </div>
                 </article>
             </div>
@@ -159,26 +527,13 @@
 
         <!--===== CONTACT =====-->
         <section class="contact section" id="contact">
-            <h2 class="section__title">Contactez-moi</h2>
-            <div class="contact__container container grid">
-                <form action="https://formspree.io/f/mzzraged" method="POST" class="contact__form grid">
-                    <div class="contact__inputs grid">
-                        <div class="contact__content">
-                            <label class="contact__label">Nom</label>
-                            <input type="text" name="name" class="contact__input" required>
-                        </div>
-                        <div class="contact__content">
-                            <label class="contact__label">Email</label>
-                            <input type="email" name="email" class="contact__input" required>
-                        </div>
-                    </div>
-                    <div class="contact__content">
-                        <label class="contact__label">Message</label>
-                        <textarea name="message" cols="0" rows="7" class="contact__input" required></textarea>
-                    </div>
-                    <div>
-                        <button type="submit" class="button button--flex">Envoyer <i class='bx bx-send button__icon'></i></button>
-                    </div>
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact__container bd-grid">
+                <form action="https://formspree.io/f/mzzraged" method="POST" class="contact__form">
+                    <input type="text" name="name" placeholder="Full Name" class="contact__input" required>
+                    <input type="email" name="email" placeholder="Your Email" class="contact__input" required>
+                    <textarea name="message" rows="7" placeholder="Your Message" class="contact__input" required></textarea>
+                    <button type="submit" class="button">Send Message</button>
                 </form>
             </div>
         </section>
@@ -186,19 +541,97 @@
 
     <!--===== FOOTER =====-->
     <footer class="footer">
-        <div class="footer__container container grid">
-            <h1 class="footer__title">EMILE AG</h1>
-            <ul class="footer__social">
-                <li><a href="#" class="footer__social-link"><i class='bx bxl-facebook'></i></a></li>
-                <li><a href="#" class="footer__social-link"><i class='bx bxl-instagram'></i></a></li>
-                <li><a href="#" class="footer__social-link"><i class='bx bxl-twitter'></i></a></li>
-            </ul>
-            <p class="footer__copy">&#169; EMILE AG. Tous droits réservés.</p>
+        <p class="footer__title">EMILE AG</p>
+        <div class="footer__social">
+            <a href="https://www.facebook.com/emileagbabli228" target="_blank" class="footer__icon"><i class='bx bxl-facebook'></i></a>
+            <a href="https://www.instagram.com/emileag.228/" target="_blank" class="footer__icon"><i class='bx bxl-instagram'></i></a>
+            <a href="https://github.com/EMILEAG/" target="_blank" class="footer__icon"><i class='bx bxl-github'></i></a>
         </div>
+        <p class="footer__copy">&#169; 2024 EMILE AG. All rights reserved</p>
     </footer>
 
-    <!-- Scroll Reveal -->
+    <!-- SCROLL REVEAL JS (Animation Dynamique) -->
     <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="script.js"></script>
+
+    <script>
+        /*===== MENU SHOW / HIDE =====*/
+        const showMenu = (toggleId, navId) => {
+            const toggle = document.getElementById(toggleId),
+            nav = document.getElementById(navId)
+
+            if(toggle && nav) {
+                toggle.addEventListener('click', () => {
+                    nav.classList.toggle('show-menu')
+                })
+            }
+        }
+        showMenu('nav-toggle', 'nav-menu')
+
+        /*===== REMOVE MENU MOBILE =====*/
+        const navLink = document.querySelectorAll('.nav__link')
+        function linkAction(){
+            const navMenu = document.getElementById('nav-menu')
+            navMenu.classList.remove('show-menu')
+        }
+        navLink.forEach(n => n.addEventListener('click', linkAction))
+
+        /*===== SCROLL SECTIONS ACTIVE LINK =====*/
+        const sections = document.querySelectorAll('section[id]')
+        window.addEventListener('scroll', scrollActive)
+
+        function scrollActive(){
+            const scrollY = window.pageYOffset
+
+            sections.forEach(current =>{
+                const sectionHeight = current.offsetHeight
+                const sectionTop = current.offsetTop - 50;
+                sectionId = current.getAttribute('id')
+
+                if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
+                    document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
+                }else{
+                    document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
+                }
+            })
+        }
+
+        /*===== DARK LIGHT THEME =====*/
+        const themeButton = document.getElementById('theme-button')
+        const darkTheme = 'dark-theme'
+        const iconTheme = 'bx-sun'
+
+        themeButton.addEventListener('click', () => {
+            document.body.classList.toggle(darkTheme)
+            themeButton.classList.toggle(iconTheme)
+        })
+
+        /*===== SCROLL REVEAL ANIMATION (DYNAMIC OPTION) =====*/
+        const sr = ScrollReveal({
+            origin: 'top',
+            distance: '80px',
+            duration: 2000,
+            reset: true
+        })
+
+        /* SCROLL HOME */
+        sr.reveal('.home__title', {})
+        sr.reveal('.home__social-icon', {delay: 200, interval: 100})
+        sr.reveal('.home__img', {delay: 400})
+
+        /* SCROLL ABOUT */
+        sr.reveal('.about__img', {})
+        sr.reveal('.about__subtitle', {delay: 200})
+        sr.reveal('.about__text', {delay: 400})
+
+        /* SCROLL SKILLS */
+        sr.reveal('.skills__subtitle', {})
+        sr.reveal('.skills__data', {interval: 200})
+
+        /* SCROLL PROJECTS */
+        sr.reveal('.project__card', {interval: 200})
+
+        /* SCROLL CONTACT */
+        sr.reveal('.contact__input', {interval: 200})
+    </script>
 </body>
 </html>
