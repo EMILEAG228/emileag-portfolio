@@ -3,635 +3,400 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Web | EMILE AG</title>
+    <title>Portfolio Ingénieur | EMILE AG</title>
 
-    <!-- BOX ICONS -->
+    <!-- BOX ICONS & AOS -->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    
-    <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
-        /*===== VARIABLES CSS =====*/
         :root {
-            --header-height: 3.5rem;
-            --first-color: #4A90E2;
-            --first-color-alt: #357ABD;
-            --title-color: #2c3e50;
-            --text-color: #5d6d7e;
-            --text-color-light: #91a1b1;
-            --body-color: #f4f7f6;
-            --container-color: #ffffff;
-            --body-font: 'Poppins', sans-serif;
-            
-            /* Glassmorphism Effect */
-            --glass: rgba(255, 255, 255, 0.7);
-            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            --primary-color: #00d2ff;
+            --secondary-color: #3a7bd5;
+            --bg-color: #0b0e14;
+            --container-color: #161b22;
+            --title-color: #ffffff;
+            --text-color: #abb2bf;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
         }
 
-        /* Variables Mode Sombre */
-        body.dark-theme {
-            --title-color: #f1f3f2;
-            --text-color: #bdc3c7;
-            --body-color: #0b0e11;
-            --container-color: #15191d;
-            --glass: rgba(21, 25, 29, 0.8);
-            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-        }
-
-        /*===== BASE =====*/
         * {
             box-sizing: border-box;
             padding: 0;
             margin: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            font-family: var(--body-font);
-            font-size: 0.938rem;
-            background-color: var(--body-color);
+            background-color: var(--bg-color);
             color: var(--text-color);
-            transition: background-color 0.4s, color 0.4s;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
             color: var(--title-color);
-            font-weight: 600;
         }
 
-        ul {
-            list-style: none;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        section {
-            padding: 4.5rem 0 2rem;
-        }
-
-        .section-title {
-            position: relative;
-            font-size: 2rem;
-            color: var(--title-color);
-            margin-top: 1rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 4px;
-            background-color: var(--first-color);
-            bottom: -10px;
-            left: 0;
-            right: 0;
-            margin: auto;
-        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; border-radius: 12px; }
 
         .bd-grid {
-            max-width: 1024px;
-            display: grid;
-            grid-template-columns: 100%;
-            margin-left: 1.5rem;
-            margin-right: 1.5rem;
-            gap: 1.5rem;
-        }
-
-        .button {
-            display: inline-block;
-            background-color: var(--first-color);
-            color: #fff;
-            padding: .75rem 1.5rem;
-            border-radius: .5rem;
-            font-weight: 600;
-            transition: .3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .button:hover {
-            background-color: var(--first-color-alt);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
 
         /*===== HEADER =====*/
-        .l-header {
-            width: 100%;
+        header {
             position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            background-color: var(--glass);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
+            top: 0; width: 100%;
+            background: rgba(11, 14, 20, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
         }
 
         .nav {
-            height: var(--header-height);
+            height: 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 600;
         }
 
         .nav__logo {
-            color: var(--first-color);
-            font-size: 1.25rem;
+            font-weight: 700;
+            font-size: 1.3rem;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        @media screen and (max-width: 767px) {
-            .nav__menu {
-                position: fixed;
-                top: -100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--container-color);
-                padding: 2rem 0;
-                transition: .4s;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            }
-        }
+        .nav__list { display: flex; gap: 2rem; }
+        .nav__link { font-weight: 500; transition: 0.3s; font-size: 0.9rem; }
+        .nav__link:hover { color: var(--primary-color); }
 
-        .nav__list {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            row-gap: 1.5rem;
-        }
-
-        .nav__link {
-            color: var(--title-color);
-            transition: .3s;
-        }
-
-        .nav__link:hover {
-            color: var(--first-color);
-        }
-
-        .nav__toggle, .change-theme {
-            font-size: 1.25rem;
-            cursor: pointer;
-            color: var(--title-color);
-        }
-
-        .show-menu {
-            top: var(--header-height) !important;
-        }
-
-        /* Active link */
-        .active-link {
-            color: var(--first-color) !important;
-        }
-
-        /*===== HOME =====*/
+        /*===== HOME (HERO) =====*/
         .home {
-            height: calc(100vh - var(--header-height));
-            row-gap: 2rem;
-        }
-
-        .home__data {
-            align-self: center;
-        }
-
-        .home__title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .home__title-color {
-            color: var(--first-color);
-        }
-
-        .home__social {
+            height: 100vh;
             display: flex;
-            flex-direction: row;
-            column-gap: 1.5rem;
-            margin-bottom: 2rem;
+            align-items: center;
+            background: radial-gradient(circle at 80% 20%, rgba(0, 210, 255, 0.05) 0%, transparent 40%);
         }
 
-        .home__social-icon {
-            font-size: 1.5rem;
-            color: var(--first-color);
-            transition: .3s;
+        .home__container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 2rem;
         }
 
-        .home__social-icon:hover {
-            transform: scale(1.2);
+        .home__title { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem; }
+        .home__title span { color: var(--primary-color); text-shadow: 0 0 20px rgba(0, 210, 255, 0.3); }
+        
+        .home__subtitle { 
+            font-size: 1.1rem; 
+            margin-bottom: 2rem; 
+            display: block; 
+            border-left: 3px solid var(--primary-color); 
+            padding-left: 1rem;
         }
 
-        .home__img {
+        .button {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.4s;
+            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.2);
+        }
+
+        .button:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 210, 255, 0.4); }
+
+        .home__img-wrapper {
+            position: relative;
             display: flex;
             justify-content: center;
         }
 
         .home__blob {
-            width: 300px;
-            fill: var(--first-color);
+            width: 100%;
+            filter: drop-shadow(0 0 30px rgba(0, 210, 255, 0.2));
+            animation: float 6s ease-in-out infinite;
         }
 
-        /*===== ABOUT =====*/
-        .about__container {
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /*===== SECTIONS =====*/
+        section { padding: 8rem 0 2rem; }
+        .section-title { font-size: 2.2rem; margin-bottom: 3rem; text-align: center; }
+        .section-title span { color: var(--primary-color); }
+
+        /*===== SKILLS & ABOUT =====*/
+        .about__container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        
+        .skills__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--glass);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid var(--border);
             text-align: center;
+            transition: 0.3s;
         }
 
-        .about__img {
-            justify-self: center;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            margin-bottom: 1.5rem;
-        }
-
-        .about__subtitle {
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .about__text {
-            line-height: 1.6;
-        }
-
-        /*===== SKILLS =====*/
-        .skills__container {
-            row-gap: 2rem;
-        }
-
-        .skills__subtitle {
-            margin-bottom: 1.5rem;
-        }
-
-        .skills__data {
-            background-color: var(--container-color);
-            padding: 1rem;
-            border-radius: .5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            box-shadow: var(--shadow);
-            transition: .3s;
-        }
-
-        .skills__data:hover {
-            transform: scale(1.02);
-        }
-
-        .skills__names {
-            display: flex;
-            align-items: center;
-            column-gap: .5rem;
-        }
-
-        .skills__icon {
-            font-size: 1.5rem;
-            color: var(--first-color);
-        }
+        .skill-card:hover { background: rgba(255,255,255,0.08); border-color: var(--primary-color); }
+        .skill-card i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem; }
 
         /*===== PROJECTS =====*/
-        .projects__container {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        .projects__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
         }
 
         .project__card {
-            background-color: var(--container-color);
-            border-radius: 1rem;
+            background: var(--container-color);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: .3s;
+            border: 1px solid var(--border);
+            transition: 0.4s;
         }
 
-        .project__card:hover {
-            transform: translateY(-10px);
-        }
+        .project__card:hover { transform: translateY(-10px); border-color: var(--primary-color); }
+        
+        .project__img-container { height: 200px; overflow: hidden; }
+        .project__img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .project__card:hover img { transform: scale(1.1); }
 
-        .project__img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .project__data {
-            padding: 1.5rem;
-        }
-
-        .project__title {
-            font-size: 1.2rem;
-            margin-bottom: .5rem;
-        }
+        .project__content { padding: 1.5rem; }
+        .project__content h3 { margin-bottom: 0.8rem; font-size: 1.2rem; }
 
         /*===== CONTACT =====*/
         .contact__form {
-            width: 100%;
-            max-width: 600px;
+            background: var(--glass);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            max-width: 700px;
             margin: 0 auto;
         }
 
         .contact__input {
             width: 100%;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border);
             padding: 1rem;
-            border-radius: .5rem;
-            border: 1px solid var(--text-color-light);
-            background-color: var(--container-color);
-            color: var(--title-color);
-            outline: none;
+            border-radius: 8px;
+            color: white;
             margin-bottom: 1.5rem;
+            outline: none;
         }
 
+        .contact__input:focus { border-color: var(--primary-color); }
+
         /*===== FOOTER =====*/
-        .footer {
-            background-color: var(--container-color);
-            padding: 3rem 0;
+        footer {
+            padding: 4rem 0;
+            border-top: 1px solid var(--border);
             text-align: center;
         }
 
-        .footer__social {
-            display: flex;
-            justify-content: center;
-            column-gap: 1.5rem;
-            margin: 2rem 0;
-        }
+        .social-icons { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; }
+        .social-icons a { font-size: 1.5rem; transition: 0.3s; }
+        .social-icons a:hover { color: var(--primary-color); transform: translateY(-3px); }
 
-        .footer__icon {
-            font-size: 1.5rem;
-            color: var(--first-color);
-        }
-
-        /*===== MEDIA QUERIES =====*/
-        @media screen and (min-width: 768px) {
-            .bd-grid {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .nav {
-                height: calc(var(--header-height) + 1rem);
-            }
-
-            .nav__list {
-                flex-direction: row;
-                column-gap: 3rem;
-            }
-
-            .nav__toggle {
-                display: none;
-            }
-
-            .home__container {
-                grid-template-columns: repeat(2, 1fr);
-                align-items: center;
-                height: 100%;
-            }
-
-            .about__container {
-                grid-template-columns: repeat(2, 1fr);
-                align-items: center;
-                text-align: initial;
-            }
+        /* MOBILE RESPONSIVE */
+        @media screen and (max-width: 768px) {
+            .home__container, .about__container { grid-template-columns: 1fr; text-align: center; }
+            .nav__list { display: none; } /* On pourrait ajouter un menu burger ici */
+            .home { height: auto; padding-top: 8rem; }
         }
     </style>
 </head>
 <body>
-    <!--===== HEADER =====-->
-    <header class="l-header">
+
+    <header>
         <nav class="nav bd-grid">
-            <div>
-                <a href="#" class="nav__logo">EMILE AG</a>
-            </div>
-
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
-                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                    <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-                    <li class="nav__item"><a href="#projects" class="nav__link">Projets</a></li>
-                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-                    <li class="nav__item"><i class='bx bx-moon change-theme' id="theme-button"></i></li>
-                </ul>
-            </div>
-
-            <div class="nav__toggle" id="nav-toggle">
-                <i class='bx bx-menu'></i>
-            </div>
+            <a href="#" class="nav__logo">EMILE AG</a>
+            <ul class="nav__list">
+                <li><a href="#home" class="nav__link">Accueil</a></li>
+                <li><a href="#about" class="nav__link">Profil</a></li>
+                <li><a href="#skills" class="nav__link">Compétences</a></li>
+                <li><a href="#projects" class="nav__link">Projets</a></li>
+                <li><a href="#contact" class="nav__link">Contact</a></li>
+            </ul>
         </nav>
     </header>
 
-    <main class="l-main">
-        <!--===== HOME =====-->
+    <main>
+        <!-- HERO SECTION -->
         <section class="home bd-grid" id="home">
-            <div class="home__data">
-                <h1 class="home__title">Hi,<br>I am <span class="home__title-color">EMILE AG</span><br>Web Designer</h1>
-                <div class="home__social">
-                    <a href="https://github.com/EMILEAG/" target="_blank" class="home__social-icon"><i class='bx bxl-github' ></i></a>
-                    <a href="https://www.youtube.com/@emileag228" target="_blank" class="home__social-icon"><i class='bx bxl-youtube' ></i></a>
-                    <a href="https://wa.me/22893896972" target="_blank" class="home__social-icon"><i class='bx bxl-whatsapp' ></i></a>
-                    <a href="https://emileag228.github.io/AmiBa.Web/" target="_blank" class="home__social-icon"><i class='bx bx-globe'></i></a>
+            <div class="home__container">
+                <div class="home__data" data-aos="fade-right">
+                    <span class="home__subtitle">Ingénieur Informatique & Électricité</span>
+                    <h1 class="home__title">Architecte de solutions <span>Digitales</span></h1>
+                    <p style="margin-bottom: 2.5rem; max-width: 500px;">Expert en Réseaux, Télécommunications et Développement Web. Je fusionne l'énergie et le code pour créer l'avenir.</p>
+                    
+                    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                        <a href="Cv Pro EMILE AG.pdf" class="button"><i class='bx bx-download'></i> Download CV</a>
+                        <div class="social-icons" style="margin-bottom: 0; align-items: center;">
+                            <a href="https://github.com/EMILEAG/"><i class='bx bxl-github'></i></a>
+                            <a href="https://wa.me/22893896972"><i class='bx bxl-whatsapp'></i></a>
+                        </div>
+                    </div>
                 </div>
-                <a href="Cv Pro EMILE AG.pdf" download class="button">Download My Cv</a>
-            </div>
 
-            <div class="home__img">
-                <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg">
-                    <mask id="mask0" mask-type="alpha">
-                        <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                    </mask>
-                    <g mask="url(#mask0)">
-                        <rect x="0" y="0" width="500" height="500" fill="#4A90E2" />
-                        <image x="50" y="50" width="400" href="perfil.png" />
-                    </g>
-                </svg>
+                <div class="home__img-wrapper" data-aos="zoom-in">
+                    <!-- Utilisation de votre SVG original mais stylisé -->
+                    <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00d2ff;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#3a7bd5;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <mask id="mask0" mask-type="alpha">
+                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
+                        </mask>
+                        <g mask="url(#mask0)">
+                            <rect x="0" y="0" width="500" height="500" fill="url(#gradient)" />
+                            <image x="50" y="50" width="400" href="perfil.png" />
+                        </g>
+                    </svg>
+                </div>
             </div>
         </section>
 
-        <!--===== ABOUT =====-->
-        <section class="about section" id="about">
-            <h2 class="section-title">About Me</h2>
-            <div class="about__container bd-grid">
-                <div class="about__img">
-                    <img src="about.jpg" alt="A propos de Emile">
-                </div>
-                <div>
-                    <h2 class="about__subtitle">I'am EMILE AG</h2>
-                    <p class="about__text">Agbabli Yawo Emile is a dynamic young professional passionate about information technology. Currently studying Computer Networks and Telecommunications at ESGIS. Open to collaboration, he aims to thrive in a cutting-edge tech environment, contributing to cybersecurity, cloud computing, and IoT.</p>
+        <!-- ABOUT -->
+        <section class="bd-grid" id="about">
+            <h2 class="section-title" data-aos="fade-up">À propos de <span>Moi</span></h2>
+            <div class="about__container">
+                <img src="about.jpg" data-aos="fade-right" alt="Emile AG">
+                <div data-aos="fade-left">
+                    <h3 style="margin-bottom: 1rem; color: var(--primary-color);">Ingénieur passionné par l'innovation</h3>
+                    <p>Étudiant en Réseaux Informatiques et Télécommunications à l'ESGIS, Agbabli Yawo Emile combine rigueur académique et projets pratiques. Mon expertise s'étend de la cybersécurité au Cloud Computing, en passant par l'Internet des Objets (IoT).</p>
+                    <br>
+                    <p>Mon objectif : concevoir des systèmes interconnectés robustes et efficients pour répondre aux défis technologiques de demain.</p>
                 </div>
             </div>
         </section>
 
-        <!--===== SKILLS =====-->
-        <section class="skills section" id="skills">
-            <h2 class="section-title">My Skills</h2>
-            <div class="skills__container bd-grid">
-                <div>
-                    <h2 class="skills__subtitle">Profesional Skills</h2>
-                    <div class="skills__data">
-                        <div class="skills__names"><i class='bx bxl-html5 skills__icon'></i> <span>HTML5 / CSS3</span></div>
-                        <span class="skills__percentage">90%</span>
-                    </div>
-                    <div class="skills__data">
-                        <div class="skills__names"><i class='bx bxl-javascript skills__icon'></i> <span>JAVASCRIPT</span></div>
-                        <span class="skills__percentage">65%</span>
-                    </div>
-                    <div class="skills__data">
-                        <div class="skills__names"><i class='bx bxl-php skills__icon'></i> <span>PHP / SQL</span></div>
-                        <span class="skills__percentage">70%</span>
-                    </div>
+        <!-- SKILLS -->
+        <section class="bd-grid" id="skills">
+            <h2 class="section-title" data-aos="fade-up">Expertise <span>Technique</span></h2>
+            <div class="skills__grid">
+                <div class="skill-card" data-aos="zoom-in" data-aos-delay="100">
+                    <i class='bx bxl-html5'></i>
+                    <h3>Frontend</h3>
+                    <p>HTML5, CSS3, JS Modernes</p>
                 </div>
-                <img src="work3.jpg" alt="Skills image" class="about__img">
+                <div class="skill-card" data-aos="zoom-in" data-aos-delay="200">
+                    <i class='bx bx-code-alt'></i>
+                    <h3>Backend</h3>
+                    <p>PHP, SQL, Architecture API</p>
+                </div>
+                <div class="skill-card" data-aos="zoom-in" data-aos-delay="300">
+                    <i class='bx bx-broadcast'></i>
+                    <h3>Réseaux</h3>
+                    <p>Télécom, IoT, Sécurité</p>
+                </div>
+                <div class="skill-card" data-aos="zoom-in" data-aos-delay="400">
+                    <i class='bx bx-bolt-circle'></i>
+                    <h3>Électricité</h3>
+                    <p>Systèmes Industriels & Domotique</p>
+                </div>
             </div>
         </section>
 
-        <!--===== PROJECTS =====-->
-        <section class="projects section" id="projects">
-            <h2 class="section-title">Recent Projects</h2>
-            <div class="projects__container bd-grid">
-                <!-- AmiBa Chat -->
-                <article class="project__card">
-                    <img src="amibachat.jpg" class="project__img" alt="">
-                    <div class="project__data">
-                        <h3 class="project__title">AmiBa Chat</h3>
-                        <p>More than just messaging! Stay connected and express yourself within your community.</p>
+        <!-- PROJECTS -->
+        <section class="bd-grid" id="projects">
+            <h2 class="section-title" data-aos="fade-up">Dernières <span>Réalisations</span></h2>
+            <div class="projects__grid">
+                <article class="project__card" data-aos="fade-up">
+                    <div class="project__img-container">
+                        <img src="amibachat.jpg" alt="">
+                    </div>
+                    <div class="project__content">
+                        <h3>AmiBa Chat</h3>
+                        <p>Plateforme communautaire interactive avec messagerie en temps réel.</p>
                     </div>
                 </article>
-                <!-- MarketPlace -->
-                <article class="project__card">
-                    <img src="marketplace.jpg" class="project__img" alt="">
-                    <div class="project__data">
-                        <h3 class="project__title">MarketPlace</h3>
-                        <p>A fully functional online marketplace for users to publish and sell products for free.</p>
+                <article class="project__card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project__img-container">
+                        <img src="marketplace.jpg" alt="">
+                    </div>
+                    <div class="project__content">
+                        <h3>MarketPlace</h3>
+                        <p>E-commerce complet permettant la vente libre et sécurisée de produits.</p>
                     </div>
                 </article>
-                <!-- Live Football -->
-                <article class="project__card">
-                    <img src="live.png" class="project__img" alt="">
-                    <div class="project__data">
-                        <h3 class="project__title">Live Football Platform</h3>
-                        <p>Web application to watch live football matches from around the world in real-time.</p>
+                <article class="project__card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project__img-container">
+                        <img src="live.png" alt="">
+                    </div>
+                    <div class="project__content">
+                        <h3>Live Football</h3>
+                        <p>Application de streaming sportif en temps réel optimisée pour le web.</p>
                     </div>
                 </article>
             </div>
         </section>
 
-        <!--===== CONTACT =====-->
-        <section class="contact section" id="contact">
-            <h2 class="section-title">Contact Me</h2>
-            <div class="contact__container bd-grid">
-                <form action="https://formspree.io/f/mzzraged" method="POST" class="contact__form">
-                    <input type="text" name="name" placeholder="Full Name" class="contact__input" required>
-                    <input type="email" name="email" placeholder="Your Email" class="contact__input" required>
-                    <textarea name="message" rows="7" placeholder="Your Message" class="contact__input" required></textarea>
-                    <button type="submit" class="button">Send Message</button>
-                </form>
-            </div>
+        <!-- CONTACT -->
+        <section class="bd-grid" id="contact">
+            <h2 class="section-title" data-aos="fade-up">Démarrons un <span>Projet</span></h2>
+            <form action="https://formspree.io/f/mzzraged" method="POST" class="contact__form" data-aos="zoom-in">
+                <input type="text" placeholder="Nom Complet" class="contact__input" required>
+                <input type="email" placeholder="Email" class="contact__input" required>
+                <textarea placeholder="Votre message..." class="contact__input" rows="6" required></textarea>
+                <button type="submit" class="button" style="border: none; cursor: pointer; width: 100%; justify-content: center;">Envoyer le message</button>
+            </form>
         </section>
     </main>
 
-    <!--===== FOOTER =====-->
-    <footer class="footer">
-        <p class="footer__title">EMILE AG</p>
-        <div class="footer__social">
-            <a href="https://www.facebook.com/emileagbabli228" target="_blank" class="footer__icon"><i class='bx bxl-facebook'></i></a>
-            <a href="https://www.instagram.com/emileag.228/" target="_blank" class="footer__icon"><i class='bx bxl-instagram'></i></a>
-            <a href="https://github.com/EMILEAG/" target="_blank" class="footer__icon"><i class='bx bxl-github'></i></a>
+    <footer>
+        <div class="bd-grid">
+            <h2 style="margin-bottom: 1rem;">EMILE AG</h2>
+            <div class="social-icons">
+                <a href="https://github.com/EMILEAG/"><i class='bx bxl-github'></i></a>
+                <a href="https://www.youtube.com/@emileag228"><i class='bx bxl-youtube'></i></a>
+                <a href="https://wa.me/22893896972"><i class='bx bxl-whatsapp'></i></a>
+            </div>
+            <p style="font-size: 0.8rem; opacity: 0.6;">&copy; 2026 EMILE AG. Conçu avec passion pour l'ingénierie.</p>
         </div>
-        <p class="footer__copy">&#169; 2024 EMILE AG. All rights reserved</p>
     </footer>
 
-    <!-- SCROLL REVEAL JS (Animation Dynamique) -->
-    <script src="https://unpkg.com/scrollreveal"></script>
-
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        /*===== MENU SHOW / HIDE =====*/
-        const showMenu = (toggleId, navId) => {
-            const toggle = document.getElementById(toggleId),
-            nav = document.getElementById(navId)
+        // Initialisation des animations au scroll
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
 
-            if(toggle && nav) {
-                toggle.addEventListener('click', () => {
-                    nav.classList.toggle('show-menu')
-                })
-            }
-        }
-        showMenu('nav-toggle', 'nav-menu')
-
-        /*===== REMOVE MENU MOBILE =====*/
-        const navLink = document.querySelectorAll('.nav__link')
-        function linkAction(){
-            const navMenu = document.getElementById('nav-menu')
-            navMenu.classList.remove('show-menu')
-        }
-        navLink.forEach(n => n.addEventListener('click', linkAction))
-
-        /*===== SCROLL SECTIONS ACTIVE LINK =====*/
-        const sections = document.querySelectorAll('section[id]')
-        window.addEventListener('scroll', scrollActive)
-
-        function scrollActive(){
-            const scrollY = window.pageYOffset
-
-            sections.forEach(current =>{
-                const sectionHeight = current.offsetHeight
-                const sectionTop = current.offsetTop - 50;
-                sectionId = current.getAttribute('id')
-
-                if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
-                    document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
-                }else{
-                    document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
-                }
-            })
-        }
-
-        /*===== DARK LIGHT THEME =====*/
-        const themeButton = document.getElementById('theme-button')
-        const darkTheme = 'dark-theme'
-        const iconTheme = 'bx-sun'
-
-        themeButton.addEventListener('click', () => {
-            document.body.classList.toggle(darkTheme)
-            themeButton.classList.toggle(iconTheme)
-        })
-
-        /*===== SCROLL REVEAL ANIMATION (DYNAMIC OPTION) =====*/
-        const sr = ScrollReveal({
-            origin: 'top',
-            distance: '80px',
-            duration: 2000,
-            reset: true
-        })
-
-        /* SCROLL HOME */
-        sr.reveal('.home__title', {})
-        sr.reveal('.home__social-icon', {delay: 200, interval: 100})
-        sr.reveal('.home__img', {delay: 400})
-
-        /* SCROLL ABOUT */
-        sr.reveal('.about__img', {})
-        sr.reveal('.about__subtitle', {delay: 200})
-        sr.reveal('.about__text', {delay: 400})
-
-        /* SCROLL SKILLS */
-        sr.reveal('.skills__subtitle', {})
-        sr.reveal('.skills__data', {interval: 200})
-
-        /* SCROLL PROJECTS */
-        sr.reveal('.project__card', {interval: 200})
-
-        /* SCROLL CONTACT */
-        sr.reveal('.contact__input', {interval: 200})
+        // Sticky Header Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 50);
+        });
     </script>
 </body>
 </html>
