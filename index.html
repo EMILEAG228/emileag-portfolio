@@ -1,402 +1,1508 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Ingénieur | EMILE AG</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EMILE AG | AGBABLI Yawo Emile - Portfolio Systèmes Réseau & Dev</title>
+  <meta name="description" content="Portfolio d'AGBABLI Yawo Emile alias EMILE AG - Étudiant 3e année Systèmes Réseau Informatique ESGIS, Développeur, Électrotechnicien. Projet AmiBa Chat, Stage CEET, compétences SysAdmin, Réseau, Dev.">
+  <meta name="keywords" content="EMILE AG, AGBABLI Yawo Emile, ESGIS, Réseau Informatique, SysAdmin, Développeur Togo, AmiBa Chat, CEET, Électrotechnique">
+  <meta name="author" content="AGBABLI Yawo Emile">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://emileag.dev">
+  <meta property="og:title" content="EMILE AG | Portfolio Futuriste">
+  <meta property="og:description" content="Étudiant 3e année Systèmes Réseau Informatique ESGIS | Dev | Électrotechnique | Stage CEET">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="EMILE AG | Portfolio Futuriste">
+  <meta property="twitter:description" content="Étudiant 3e année Systèmes Réseau Informatique ESGIS | Dev | Électrotechnique">
+  
+  <!-- Preload Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+  
+  <!-- Spline Runtime -->
+  <script type="module">
+    import { Application } from 'https://unpkg.com/@splinetool/runtime@1.9.28/build/runtime.js';
+    window.SplineApp = Application;
+  </script>
 
-    <!-- BOX ICONS & AOS -->
-    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ==================== CSS VARIABLES ==================== */
+    :root {
+      --color-bg: #0A0A0F;
+      --color-cyan: #00F5FF;
+      --color-violet: #8A2BE2;
+      --color-white: #F5F5F5;
+      --color-gray: #1A1A24;
+      --font-title: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --shadow-neon: 0 0 20px rgba(0, 245, 255, 0.3);
+      --shadow-violet: 0 0 20px rgba(138, 43, 226, 0.3);
+    }
 
-    <style>
-        :root {
-            --primary-color: #00d2ff;
-            --secondary-color: #3a7bd5;
-            --bg-color: #0b0e14;
-            --container-color: #161b22;
-            --title-color: #ffffff;
-            --text-color: #abb2bf;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
-        }
+    /* ==================== BASE STYLES ==================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        * {
-            box-sizing: border-box;
-            padding: 0;
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-        }
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      overflow-x: hidden;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-white);
+      cursor: none;
+      overflow-x: hidden;
+    }
 
-        h1, h2, h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            color: var(--title-color);
-        }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-title);
+      font-weight: 700;
+    }
 
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        img { max-width: 100%; height: auto; display: block; border-radius: 12px; }
+    section {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      position: relative;
+      padding: 6rem 1rem;
+    }
 
-        .bd-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
 
-        /*===== HEADER =====*/
-        header {
-            position: fixed;
-            top: 0; width: 100%;
-            background: rgba(11, 14, 20, 0.8);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border);
-        }
+    /* ==================== LOADER ==================== */
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--color-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 2rem;
+    }
 
-        .nav {
-            height: 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .loader-text {
+      font-family: var(--font-title);
+      font-size: 1.5rem;
+      background: linear-gradient(90deg, var(--color-cyan), var(--color-violet));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
 
-        .nav__logo {
-            font-weight: 700;
-            font-size: 1.3rem;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    .loader-bar {
+      width: 300px;
+      height: 4px;
+      background: var(--color-gray);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
 
-        .nav__list { display: flex; gap: 2rem; }
-        .nav__link { font-weight: 500; transition: 0.3s; font-size: 0.9rem; }
-        .nav__link:hover { color: var(--primary-color); }
+    .loader-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-cyan), var(--color-violet));
+      width: 0%;
+      box-shadow: var(--shadow-neon);
+    }
 
-        /*===== HOME (HERO) =====*/
-        .home {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            background: radial-gradient(circle at 80% 20%, rgba(0, 210, 255, 0.05) 0%, transparent 40%);
-        }
+    /* ==================== CUSTOM CURSOR ==================== */
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--color-cyan);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transition: width 0.3s, height 0.3s;
+      mix-blend-mode: difference;
+    }
 
-        .home__container {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            align-items: center;
-            gap: 2rem;
-        }
+    .cursor-follower {
+      width: 40px;
+      height: 40px;
+      background: radial-gradient(circle, rgba(0,245,255,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9997;
+      transition: transform 0.15s ease-out;
+    }
 
-        .home__title { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem; }
-        .home__title span { color: var(--primary-color); text-shadow: 0 0 20px rgba(0, 210, 255, 0.3); }
-        
-        .home__subtitle { 
-            font-size: 1.1rem; 
-            margin-bottom: 2rem; 
-            display: block; 
-            border-left: 3px solid var(--primary-color); 
-            padding-left: 1rem;
-        }
+    .cursor-grow {
+      width: 60px;
+      height: 60px;
+      border-color: var(--color-violet);
+    }
 
-        .button {
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border-radius: 50px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: 0.4s;
-            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.2);
-        }
+    /* ==================== NAVIGATION ==================== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+      background: var(--glass-bg);
+      border-bottom: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+    }
 
-        .button:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 210, 255, 0.4); }
+    .nav-scrolled {
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
 
-        .home__img-wrapper {
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
 
-        .home__blob {
-            width: 100%;
-            filter: drop-shadow(0 0 30px rgba(0, 210, 255, 0.2));
-            animation: float 6s ease-in-out infinite;
-        }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-cyan), var(--color-violet));
+      transition: width 0.3s ease;
+    }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
+    .nav-link.active::after,
+    .nav-link:hover::after {
+      width: 100%;
+    }
 
-        /*===== SECTIONS =====*/
-        section { padding: 8rem 0 2rem; }
-        .section-title { font-size: 2.2rem; margin-bottom: 3rem; text-align: center; }
-        .section-title span { color: var(--primary-color); }
+    .nav-link.active {
+      color: var(--color-cyan);
+    }
 
-        /*===== SKILLS & ABOUT =====*/
-        .about__container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        
-        .skills__grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
+    /* ==================== GLASSMORPHISM ==================== */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
 
-        .skill-card {
-            background: var(--glass);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border: 1px solid var(--border);
-            text-align: center;
-            transition: 0.3s;
-        }
+    .glass:hover {
+      border-color: var(--color-cyan);
+      box-shadow: 0 8px 32px 0 rgba(0, 245, 255, 0.2), var(--shadow-neon);
+      transform: translateY(-5px);
+    }
 
-        .skill-card:hover { background: rgba(255,255,255,0.08); border-color: var(--primary-color); }
-        .skill-card i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem; }
+    /* ==================== BUTTONS ==================== */
+    .btn-magnetic {
+      position: relative;
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      font-family: var(--font-title);
+      font-weight: 600;
+      border: 2px solid var(--color-cyan);
+      background: transparent;
+      color: var(--color-cyan);
+      overflow: hidden;
+      transition: color 0.3s ease;
+      z-index: 1;
+    }
 
-        /*===== PROJECTS =====*/
-        .projects__grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
+    .btn-magnetic::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-cyan), var(--color-violet));
+      transition: left 0.4s ease;
+      z-index: -1;
+    }
 
-        .project__card {
-            background: var(--container-color);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: 0.4s;
-        }
+    .btn-magnetic:hover {
+      color: var(--color-bg);
+      border-color: transparent;
+      box-shadow: var(--shadow-neon);
+    }
 
-        .project__card:hover { transform: translateY(-10px); border-color: var(--primary-color); }
-        
-        .project__img-container { height: 200px; overflow: hidden; }
-        .project__img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .project__card:hover img { transform: scale(1.1); }
+    .btn-magnetic:hover::before {
+      left: 0;
+    }
 
-        .project__content { padding: 1.5rem; }
-        .project__content h3 { margin-bottom: 0.8rem; font-size: 1.2rem; }
+    .btn-primary {
+      background: linear-gradient(90deg, var(--color-cyan), var(--color-violet));
+      border: none;
+      color: var(--color-bg);
+    }
 
-        /*===== CONTACT =====*/
-        .contact__form {
-            background: var(--glass);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            max-width: 700px;
-            margin: 0 auto;
-        }
+    /* ==================== ANIMATIONS ==================== */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
 
-        .contact__input {
-            width: 100%;
-            background: rgba(0,0,0,0.2);
-            border: 1px solid var(--border);
-            padding: 1rem;
-            border-radius: 8px;
-            color: white;
-            margin-bottom: 1.5rem;
-            outline: none;
-        }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
 
-        .contact__input:focus { border-color: var(--primary-color); }
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
 
-        /*===== FOOTER =====*/
-        footer {
-            padding: 4rem 0;
-            border-top: 1px solid var(--border);
-            text-align: center;
-        }
+    .float-animation {
+      animation: float 6s ease-in-out infinite;
+    }
 
-        .social-icons { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; }
-        .social-icons a { font-size: 1.5rem; transition: 0.3s; }
-        .social-icons a:hover { color: var(--primary-color); transform: translateY(-3px); }
+    /* ==================== TIMELINE ==================== */
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, var(--color-cyan), var(--color-violet), transparent);
+      transform: translateX(-50%);
+    }
 
-        /* MOBILE RESPONSIVE */
-        @media screen and (max-width: 768px) {
-            .home__container, .about__container { grid-template-columns: 1fr; text-align: center; }
-            .nav__list { display: none; } /* On pourrait ajouter un menu burger ici */
-            .home { height: auto; padding-top: 8rem; }
-        }
-    </style>
+    .timeline-item {
+      position: relative;
+      opacity: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      background: var(--color-cyan);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 20px var(--color-cyan);
+      z-index: 2;
+    }
+
+    /* ==================== PROGRESS BARS ==================== */
+    .progress-bar {
+      height: 6px;
+      background: var(--color-gray);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-cyan), var(--color-violet));
+      width: 0%;
+      border-radius: 10px;
+      box-shadow: var(--shadow-neon);
+      transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    /* ==================== CAROUSEL 3D ==================== */
+    .carousel-3d {
+      perspective: 1000px;
+      transform-style: preserve-3d;
+    }
+
+    /* ==================== FORMS ==================== */
+    .form-input {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--color-white);
+      padding: 1rem;
+      width: 100%;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--color-cyan);
+      box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+    }
+
+    .form-input.error {
+      border-color: #ff3366;
+      animation: glitch 0.3s ease;
+    }
+
+    /* ==================== SOCIAL ICONS GLITCH ==================== */
+    .social-icon:hover {
+      animation: glitch 0.3s ease infinite;
+      color: var(--color-cyan);
+    }
+
+    /* ==================== UTILITY ==================== */
+    .gradient-text {
+      background: linear-gradient(90deg, var(--color-cyan), var(--color-violet));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .spline-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+    }
+
+    .spline-fallback {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 768px) {
+      html {
+        scroll-snap-type: none;
+      }
+      
+      section {
+        min-height: auto;
+        padding: 4rem 1rem;
+      }
+
+      .cursor, .cursor-follower {
+        display: none;
+      }
+
+      body {
+        cursor: auto;
+      }
+
+      .spline-container canvas {
+        display: none !important;
+      }
+
+      .spline-fallback {
+        display: block;
+      }
+
+      .timeline-line {
+        left: 20px;
+      }
+
+      .timeline-dot {
+        left: 20px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .loader-text {
+        font-size: 1rem;
+      }
+
+      .loader-bar {
+        width: 200px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <!-- ==================== LOADER ==================== -->
+  <div id="loader">
+    <div class="loader-text">loading EMILE_AG.exe...</div>
+    <div class="loader-bar">
+      <div class="loader-progress"></div>
+    </div>
+  </div>
 
-    <header>
-        <nav class="nav bd-grid">
-            <a href="#" class="nav__logo">EMILE AG</a>
-            <ul class="nav__list">
-                <li><a href="#home" class="nav__link">Accueil</a></li>
-                <li><a href="#about" class="nav__link">Profil</a></li>
-                <li><a href="#skills" class="nav__link">Compétences</a></li>
-                <li><a href="#projects" class="nav__link">Projets</a></li>
-                <li><a href="#contact" class="nav__link">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- ==================== CUSTOM CURSOR ==================== -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
 
-    <main>
-        <!-- HERO SECTION -->
-        <section class="home bd-grid" id="home">
-            <div class="home__container">
-                <div class="home__data" data-aos="fade-right">
-                    <span class="home__subtitle">Ingénieur Informatique & Électricité</span>
-                    <h1 class="home__title">Architecte de solutions <span>Digitales</span></h1>
-                    <p style="margin-bottom: 2.5rem; max-width: 500px;">Expert en Réseaux, Télécommunications et Développement Web. Je fusionne l'énergie et le code pour créer l'avenir.</p>
-                    
-                    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-                        <a href="Cv Pro EMILE AG.pdf" class="button"><i class='bx bx-download'></i> Download CV</a>
-                        <div class="social-icons" style="margin-bottom: 0; align-items: center;">
-                            <a href="https://github.com/EMILEAG/"><i class='bx bxl-github'></i></a>
-                            <a href="https://wa.me/22893896972"><i class='bx bxl-whatsapp'></i></a>
-                        </div>
-                    </div>
-                </div>
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav class="py-4 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#hero" class="text-2xl font-bold gradient-text">EMILE_AG</a>
+      
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex gap-8 items-center">
+        <li><a href="#hero" class="nav-link text-sm">Accueil</a></li>
+        <li><a href="#parcours" class="nav-link text-sm">Parcours</a></li>
+        <li><a href="#competences" class="nav-link text-sm">Compétences</a></li>
+        <li><a href="#projets" class="nav-link text-sm">Projets</a></li>
+        <li><a href="#stage" class="nav-link text-sm">Stage CEET</a></li>
+        <li><a href="#contact" class="nav-link text-sm">Contact</a></li>
+      </ul>
 
-                <div class="home__img-wrapper" data-aos="zoom-in">
-                    <!-- Utilisation de votre SVG original mais stylisé -->
-                    <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#00d2ff;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#3a7bd5;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <mask id="mask0" mask-type="alpha">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                        </mask>
-                        <g mask="url(#mask0)">
-                            <rect x="0" y="0" width="500" height="500" fill="url(#gradient)" />
-                            <image x="50" y="50" width="400" href="perfil.png" />
-                        </g>
-                    </svg>
-                </div>
-            </div>
-        </section>
+      <!-- Mobile Burger -->
+      <button id="burger" class="md:hidden flex flex-col gap-1.5">
+        <span class="w-6 h-0.5 bg-white transition-all"></span>
+        <span class="w-6 h-0.5 bg-white transition-all"></span>
+        <span class="w-6 h-0.5 bg-white transition-all"></span>
+      </button>
+    </div>
 
-        <!-- ABOUT -->
-        <section class="bd-grid" id="about">
-            <h2 class="section-title" data-aos="fade-up">À propos de <span>Moi</span></h2>
-            <div class="about__container">
-                <img src="about.jpg" data-aos="fade-right" alt="Emile AG">
-                <div data-aos="fade-left">
-                    <h3 style="margin-bottom: 1rem; color: var(--primary-color);">Ingénieur passionné par l'innovation</h3>
-                    <p>Étudiant en Réseaux Informatiques et Télécommunications à l'ESGIS, Agbabli Yawo Emile combine rigueur académique et projets pratiques. Mon expertise s'étend de la cybersécurité au Cloud Computing, en passant par l'Internet des Objets (IoT).</p>
-                    <br>
-                    <p>Mon objectif : concevoir des systèmes interconnectés robustes et efficients pour répondre aux défis technologiques de demain.</p>
-                </div>
-            </div>
-        </section>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+      <ul class="flex flex-col gap-4">
+        <li><a href="#hero" class="nav-link block py-2">Accueil</a></li>
+        <li><a href="#parcours" class="nav-link block py-2">Parcours</a></li>
+        <li><a href="#competences" class="nav-link block py-2">Compétences</a></li>
+        <li><a href="#projets" class="nav-link block py-2">Projets</a></li>
+        <li><a href="#stage" class="nav-link block py-2">Stage CEET</a></li>
+        <li><a href="#contact" class="nav-link block py-2">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
-        <!-- SKILLS -->
-        <section class="bd-grid" id="skills">
-            <h2 class="section-title" data-aos="fade-up">Expertise <span>Technique</span></h2>
-            <div class="skills__grid">
-                <div class="skill-card" data-aos="zoom-in" data-aos-delay="100">
-                    <i class='bx bxl-html5'></i>
-                    <h3>Frontend</h3>
-                    <p>HTML5, CSS3, JS Modernes</p>
-                </div>
-                <div class="skill-card" data-aos="zoom-in" data-aos-delay="200">
-                    <i class='bx bx-code-alt'></i>
-                    <h3>Backend</h3>
-                    <p>PHP, SQL, Architecture API</p>
-                </div>
-                <div class="skill-card" data-aos="zoom-in" data-aos-delay="300">
-                    <i class='bx bx-broadcast'></i>
-                    <h3>Réseaux</h3>
-                    <p>Télécom, IoT, Sécurité</p>
-                </div>
-                <div class="skill-card" data-aos="zoom-in" data-aos-delay="400">
-                    <i class='bx bx-bolt-circle'></i>
-                    <h3>Électricité</h3>
-                    <p>Systèmes Industriels & Domotique</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROJECTS -->
-        <section class="bd-grid" id="projects">
-            <h2 class="section-title" data-aos="fade-up">Dernières <span>Réalisations</span></h2>
-            <div class="projects__grid">
-                <article class="project__card" data-aos="fade-up">
-                    <div class="project__img-container">
-                        <img src="amibachat.jpg" alt="">
-                    </div>
-                    <div class="project__content">
-                        <h3>AmiBa Chat</h3>
-                        <p>Plateforme communautaire interactive avec messagerie en temps réel.</p>
-                    </div>
-                </article>
-                <article class="project__card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="project__img-container">
-                        <img src="marketplace.jpg" alt="">
-                    </div>
-                    <div class="project__content">
-                        <h3>MarketPlace</h3>
-                        <p>E-commerce complet permettant la vente libre et sécurisée de produits.</p>
-                    </div>
-                </article>
-                <article class="project__card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="project__img-container">
-                        <img src="live.png" alt="">
-                    </div>
-                    <div class="project__content">
-                        <h3>Live Football</h3>
-                        <p>Application de streaming sportif en temps réel optimisée pour le web.</p>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section class="bd-grid" id="contact">
-            <h2 class="section-title" data-aos="fade-up">Démarrons un <span>Projet</span></h2>
-            <form action="https://formspree.io/f/mzzraged" method="POST" class="contact__form" data-aos="zoom-in">
-                <input type="text" placeholder="Nom Complet" class="contact__input" required>
-                <input type="email" placeholder="Email" class="contact__input" required>
-                <textarea placeholder="Votre message..." class="contact__input" rows="6" required></textarea>
-                <button type="submit" class="button" style="border: none; cursor: pointer; width: 100%; justify-content: center;">Envoyer le message</button>
-            </form>
-        </section>
-    </main>
-
-    <footer>
-        <div class="bd-grid">
-            <h2 style="margin-bottom: 1rem;">EMILE AG</h2>
-            <div class="social-icons">
-                <a href="https://github.com/EMILEAG/"><i class='bx bxl-github'></i></a>
-                <a href="https://www.youtube.com/@emileag228"><i class='bx bxl-youtube'></i></a>
-                <a href="https://wa.me/22893896972"><i class='bx bxl-whatsapp'></i></a>
-            </div>
-            <p style="font-size: 0.8rem; opacity: 0.6;">&copy; 2026 EMILE AG. Conçu avec passion pour l'ingénierie.</p>
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="hero" class="min-h-screen flex items-center">
+    <div class="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center px-4">
+      <!-- Photo Left -->
+      <div class="order-2 md:order-1 flex justify-center">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-cyan-500 to-violet-600 rounded-3xl blur-3xl opacity-30"></div>
+          <img 
+            src="https://emileag228.github.io/emileag-portfolio/about.jpg" 
+            alt="AGBABLI Yawo Emile - EMILE AG" 
+            loading="lazy"
+            class="relative rounded-3xl w-full max-w-md glass float-animation"
+          >
         </div>
-    </footer>
+      </div>
 
-    <!-- SCRIPTS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialisation des animations au scroll
-        AOS.init({
-            duration: 1000,
-            once: true
+      <!-- Bio Right -->
+      <div class="order-1 md:order-2 space-y-6">
+        <div class="inline-block px-4 py-2 glass rounded-full text-xs text-cyan-400 mb-4">
+          Systèmes Réseau | Dev | Électrotechnique
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+          <span class="block">AGBABLI</span>
+          <span class="gradient-text">Yawo Emile</span>
+        </h1>
+        <p class="text-xl text-gray-300">
+          Alias <span class="text-cyan-400 font-semibold">EMILE AG</span>
+        </p>
+        <p class="text-gray-400 leading-relaxed max-w-xl">
+          Étudiant en 3e année Systèmes Réseau Informatique à ESGIS. Passionné par l'infrastructure réseau, le développement full-stack et l'électrotechnique. Basé à Tsévié, Togo.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-4">
+          <a href="#contact" class="btn-magnetic btn-primary rounded-lg">Me Contacter</a>
+          <a href="#projets" class="btn-magnetic rounded-lg">Voir Projets</a>
+        </div>
+      </div>
+
+      <!-- Spline Robot Hero -->
+      <div class="absolute bottom-0 right-0 w-full md:w-1/2 h-96 md:h-full opacity-50 md:opacity-100 pointer-events-none md:pointer-events-auto">
+        <div class="spline-container" id="spline-hero">
+          <img 
+            src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=600&auto=format&fit=crop" 
+            alt="Robot Assistant" 
+            class="spline-fallback"
+            loading="lazy"
+          >
+          <!-- TODO: Replace SPLINE_URL_ROBOT_HERO with actual Spline scene URL -->
+          <!-- Example: https://prod.spline.design/XXXXXXXX/scene.splinecode -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PARCOURS SECTION ==================== -->
+  <section id="parcours" class="relative">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl md:text-6xl font-bold text-center mb-20">
+        Mon <span class="gradient-text">Parcours</span>
+      </h2>
+
+      <div class="relative">
+        <div class="timeline-line"></div>
+
+        <!-- Timeline Item 2023 -->
+        <div class="timeline-item mb-24" data-year="2023">
+          <div class="timeline-dot"></div>
+          <div class="md:grid md:grid-cols-2 gap-8 items-center">
+            <div class="md:text-right glass p-8 rounded-2xl mb-4 md:mb-0 md:mr-8">
+              <span class="text-cyan-400 font-bold text-xl">2023</span>
+              <h3 class="text-2xl font-bold mt-2 mb-4">BAC F3 + BT Électrotechnique</h3>
+              <p class="text-gray-400 mb-4">Obtention du Baccalauréat série F3 et du Brevet de Technicien en Électrotechnique. Bases solides en électricité industrielle et automatisme.</p>
+              <img 
+                src="https://formation-industries-eure-seine-estuaire.fr/sites/default/files/styles/hd/public/2024-06/Electrotechnique.jpg?itok=q35h9rLm" 
+                alt="Diplôme Électrotechnique" 
+                loading="lazy"
+                class="rounded-lg w-full h-48 object-cover mt-4"
+              >
+            </div>
+            <div class="hidden md:block"></div>
+          </div>
+        </div>
+
+        <!-- Timeline Item ESGIS -->
+        <div class="timeline-item mb-24" data-year="2024">
+          <div class="timeline-dot"></div>
+          <div class="md:grid md:grid-cols-2 gap-8 items-center">
+            <div class="hidden md:block"></div>
+            <div class="glass p-8 rounded-2xl md:ml-8">
+              <span class="text-violet-400 font-bold text-xl">2023 - 2026</span>
+              <h3 class="text-2xl font-bold mt-2 mb-4">ESGIS - 3e année Systèmes Réseau</h3>
+              <p class="text-gray-400 mb-4">Formation en Systèmes Réseau Informatique. Administration Windows/Linux, Cisco, virtualisation, sécurité réseau, cloud computing.</p>
+              <img 
+                src="https://www.synomega.com/wp-content/uploads/2021/05/synomega-infogerance-informatique-ile-de-france-Attention-obsolescence-systeme-information-prestataire-informatique-reseau-informatique-entreprise-votre-prestataire-informatique-ART.jpg" 
+                alt="ESGIS Campus" 
+                loading="lazy"
+                class="rounded-lg w-full h-48 object-cover mt-4"
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline Item CEET -->
+        <div class="timeline-item" data-year="2025">
+          <div class="timeline-dot"></div>
+          <div class="md:grid md:grid-cols-2 gap-8 items-center">
+            <div class="md:text-right glass p-8 rounded-2xl mb-4 md:mb-0 md:mr-8">
+              <span class="text-cyan-400 font-bold text-xl">2025</span>
+              <h3 class="text-2xl font-bold mt-2 mb-4">Stage CEET - Compagnie Énergie</h3>
+              <p class="text-gray-400 mb-4">Stage professionnel à la Compagnie Énergie Électrique du Togo. Maintenance équipements réseaux industriels, supervision SCADA, intervention postes HT/BT.</p>
+              <img 
+                src="https://www.togofirst.com/media/k2/items/cache/4aa75c7cc60ea0485383f8ca4faf393c_L.jpg" 
+                alt="Infrastructure Électrique CEET" 
+                loading="lazy"
+                class="rounded-lg w-full h-48 object-cover mt-4"
+              >
+            </div>
+            <div class="hidden md:block"></div>
+          </div>
+        </div>
+
+        <!-- Spline Drone -->
+        <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-64 h-64 opacity-30 pointer-events-none">
+          <div class="spline-container" id="spline-timeline">
+            <img 
+              src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=400&auto=format&fit=crop" 
+              alt="Drone Scanner" 
+              class="spline-fallback"
+              loading="lazy"
+            >
+            <!-- TODO: Replace SPLINE_URL_ROBOT_TIMELINE with actual Spline scene URL -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== COMPÉTENCES SECTION ==================== -->
+  <section id="competences">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl md:text-6xl font-bold text-center mb-20">
+        Mes <span class="gradient-text">Compétences</span>
+      </h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Card Réseau -->
+        <div class="skill-card glass p-6 rounded-2xl" data-skill="reseau">
+          <div class="w-16 h-16 mb-4 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-3xl">
+            🌐
+          </div>
+          <h3 class="text-xl font-bold mb-4">Réseau</h3>
+          <img 
+            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=400&auto=format&fit=crop" 
+            alt="Infrastructure Réseau" 
+            loading="lazy"
+            class="rounded-lg w-full h-32 object-cover mb-4"
+          >
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span>Cisco CCNA</span>
+                <span>85%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" data-progress="85"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span>TCP/IP</span>
+                <span>90%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" data-progress="90"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card SysAdmin -->
+        <div class="skill-card glass p-6 rounded-2xl" data-skill="sysadmin">
+          <div class="w-16 h-16 mb-4 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-3xl">
+            🖥️
+          </div>
+          <h3 class="text-xl font-bold mb-4">SysAdmin</h3>
+          <img 
+            src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?q=80&w=400&auto=format&fit=crop" 
+            alt="Administration Système" 
+            loading="lazy"
+            class="rounded-lg w-full h-32 object-cover mb-4"
+          >
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span>Windows Server</span>
+                <span>80%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" data-progress="80"></div>
+              </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span>Linux</span>
+                <span>75%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" data-progress="75"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Dev -->
+        <div class="skill-card glass p-6 rounded-2xl" data-skill="dev">
+          <div class="w-16 h-16 mb-4 rounded-xl bg-gradient-to-br from-cyan-500 to-violet-600 flex items-center justify-center text-3xl">
+            💻
+          </div>
+          <h3 class="text-xl font-bold mb-4">Développement</h3>
+          <img 
+            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=400&auto=format&fit=crop" 
+            alt="Développement" 
+            loading="lazy"
+            class="rounded-lg w-full h-32 object-cover mb-4"
+          >
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span>JavaScript</span>
+                <span>85%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" data-progress="85"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span>Python</span>
+                <span>70%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" data-progress="70"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Électrotech -->
+        <div class="skill-card glass p-6 rounded-2xl" data-skill="electrotech">
+          <div class="w-16 h-16 mb-4 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center text-3xl">
+            ⚡
+          </div>
+          <h3 class="text-xl font-bold mb-4">Électrotechnique</h3>
+          <img 
+            src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=400&auto=format&fit=crop" 
+            alt="Électrotechnique" 
+            loading="lazy"
+            class="rounded-lg w-full h-32 object-cover mb-4"
+          >
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span>HT/BT</span>
+                <span>80%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" data-progress="80"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span>Automatisme</span>
+                <span>75%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" data-progress="75"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spline Robotic Arm -->
+      <div class="mt-12 mx-auto w-full max-w-md h-64 opacity-50">
+        <div class="spline-container" id="spline-skills">
+          <img 
+            src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?q=80&w=500&auto=format&fit=crop" 
+            alt="Bras Robotique" 
+            class="spline-fallback"
+            loading="lazy"
+          >
+          <!-- TODO: Replace SPLINE_URL_ROBOT_SKILLS with actual Spline scene URL -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROJETS SECTION ==================== -->
+  <section id="projets">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl md:text-6xl font-bold text-center mb-20">
+        Mes <span class="gradient-text">Projets</span>
+      </h2>
+
+      <!-- AmiBa Chat Focus -->
+      <div class="glass p-8 md:p-12 rounded-3xl">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <div class="inline-block px-4 py-2 bg-gradient-to-r from-cyan-500 to-violet-600 rounded-full text-xs font-bold mb-4">
+              PROJET PHARE
+            </div>
+            <h3 class="text-4xl font-bold mb-4 gradient-text">AmiBa Chat</h3>
+            <p class="text-gray-400 mb-6 leading-relaxed">
+              Application de messagerie instantanée temps réel développée en full-stack. Interface moderne, authentification sécurisée, chat 1-to-1 et groupes, notifications push, partage de fichiers, appels vocaux/vidéo intégrés.
+            </p>
+            
+            <div class="mb-6">
+              <h4 class="font-bold mb-3 text-cyan-400">Stack Technique:</h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 glass rounded-full text-xs">React</span>
+                <span class="px-3 py-1 glass rounded-full text-xs">Node.js</span>
+                <span class="px-3 py-1 glass rounded-full text-xs">Socket.io</span>
+                <span class="px-3 py-1 glass rounded-full text-xs">MongoDB</span>
+                <span class="px-3 py-1 glass rounded-full text-xs">WebRTC</span>
+                <span class="px-3 py-1 glass rounded-full text-xs">Tailwind</span>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-4">
+              <a href="https://github.com/emileag/amiba-chat" target="_blank" class="btn-magnetic rounded-lg flex items-center gap-2">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
+              </a>
+              <a href="#" class="btn-magnetic btn-primary rounded-lg">Live Demo</a>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="absolute inset-0 bg-gradient-to-br from-cyan-500 to-violet-600 rounded-2xl blur-2xl opacity-30"></div>
+            <img 
+              src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=600&auto=format&fit=crop" 
+              alt="AmiBa Chat Mockup" 
+              loading="lazy"
+              class="relative rounded-2xl w-full carousel-3d"
+            >
+          </div>
+        </div>
+
+        <!-- Spline Coder Robot -->
+        <div class="mt-12 mx-auto w-full max-w-sm h-64 opacity-60">
+          <div class="spline-container" id="spline-project">
+            <img 
+              src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=500&auto=format&fit=crop" 
+              alt="Robot Codeur" 
+              class="spline-fallback"
+              loading="lazy"
+            >
+            <!-- TODO: Replace SPLINE_URL_ROBOT_PROJECT with actual Spline scene URL -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== STAGE CEET SECTION ==================== -->
+  <section id="stage">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl md:text-6xl font-bold text-center mb-12">
+        Stage <span class="gradient-text">CEET</span>
+      </h2>
+
+      <div class="glass p-8 md:p-12 rounded-3xl mb-12">
+        <div class="flex flex-col md:flex-row items-center gap-8 mb-8">
+          <img 
+            src="https://services.ceet.tg/assets/img/ceet_logo1.png" 
+            alt="Logo CEET" 
+            loading="lazy"
+            class="w-32 h-32 object-cover rounded-2xl"
+          >
+          <div>
+            <h3 class="text-3xl font-bold mb-2">Compagnie Énergie Électrique du Togo</h3>
+            <p class="text-gray-400">Stage Professionnel - Département Réseau & Maintenance</p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h4 class="text-xl font-bold mb-4 text-cyan-400">Missions Réalisées</h4>
+            <ul class="space-y-3">
+              <li class="ceet-bullet flex items-start gap-3 opacity-0">
+                <span class="text-violet-400 mt-1">▹</span>
+                <span class="text-gray-300">Maintenance préventive et corrective des équipements réseau industriels</span>
+              </li>
+              <li class="ceet-bullet flex items-start gap-3 opacity-0">
+                <span class="text-violet-400 mt-1">▹</span>
+                <span class="text-gray-300">Configuration et supervision des systèmes SCADA pour postes HT/BT</span>
+              </li>
+              <li class="ceet-bullet flex items-start gap-3 opacity-0">
+                <span class="text-violet-400 mt-1">▹</span>
+                <span class="text-gray-300">Intervention sur fibres optiques et équipements de transmission</span>
+              </li>
+              <li class="ceet-bullet flex items-start gap-3 opacity-0">
+                <span class="text-violet-400 mt-1">▹</span>
+                <span class="text-gray-300">Diagnostic pannes réseau et mise en place solutions de redondance</span>
+              </li>
+              <li class="ceet-bullet flex items-start gap-3 opacity-0">
+                <span class="text-violet-400 mt-1">▹</span>
+                <span class="text-gray-300">Documentation technique et procédures d'intervention</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-xl font-bold mb-4 text-cyan-400">Compétences Acquises</h4>
+            <div class="space-y-4">
+              <div class="glass p-4 rounded-lg">
+                <div class="text-sm text-gray-400 mb-1">Réseaux Industriels</div>
+                <div class="text-lg font-bold">SCADA, Modbus, DNP3</div>
+              </div>
+              <div class="glass p-4 rounded-lg">
+                <div class="text-sm text-gray-400 mb-1">Infrastructure</div>
+                <div class="text-lg font-bold">Fibre Optique, Switches L3</div>
+              </div>
+              <div class="glass p-4 rounded-lg">
+                <div class="text-sm text-gray-400 mb-1">Sécurité</div>
+                <div class="text-lg font-bold">NACL, VLAN, Firewall</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spline Electrician Robot -->
+      <div class="mx-auto w-full max-w-lg h-80 opacity-70">
+        <div class="spline-container" id="spline-ceet">
+          <img 
+            src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=500&auto=format&fit=crop" 
+            alt="Robot Électricien" 
+            class="spline-fallback"
+            loading="lazy"
+          >
+          <!-- TODO: Replace SPLINE_URL_ROBOT_CEET with actual Spline scene URL -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT SECTION ==================== -->
+  <section id="contact">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-4xl md:text-6xl font-bold text-center mb-12">
+        Me <span class="gradient-text">Contacter</span>
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- Form -->
+        <div class="glass p-8 rounded-3xl">
+          <h3 class="text-2xl font-bold mb-6">Envoyez un message</h3>
+          <form id="contact-form" class="space-y-6">
+            <div>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                placeholder="Votre nom" 
+                class="form-input rounded-lg"
+                required
+              >
+              <span class="text-xs text-red-400 hidden" id="name-error">Nom requis</span>
+            </div>
+            <div>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="Votre email" 
+                class="form-input rounded-lg"
+                required
+              >
+              <span class="text-xs text-red-400 hidden" id="email-error">Email valide requis</span>
+            </div>
+            <div>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="5" 
+                placeholder="Votre message" 
+                class="form-input rounded-lg resize-none"
+                required
+              ></textarea>
+              <span class="text-xs text-red-400 hidden" id="message-error">Message requis</span>
+            </div>
+            <button type="submit" class="btn-magnetic btn-primary rounded-lg w-full">
+              Envoyer le message
+            </button>
+          </form>
+        </div>
+
+        <!-- Info -->
+        <div class="space-y-6">
+          <div class="glass p-8 rounded-3xl">
+            <h3 class="text-2xl font-bold mb-6">Informations Directes</h3>
+            
+            <div class="space-y-4">
+              <a href="mailto:emileagbabli7@gmail.com" class="flex items-center gap-4 glass p-4 rounded-xl hover:border-cyan-400 transition-all">
+                <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
+                  ✉️
+                </div>
+                <div>
+                  <div class="text-xs text-gray-400">Email</div>
+                  <div class="font-semibold">emileagbabli7@gmail.com</div>
+                </div>
+              </a>
+
+              <a href="tel:+22893896972" class="flex items-center gap-4 glass p-4 rounded-xl hover:border-cyan-400 transition-all">
+                <div class="w-12 h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg flex items-center justify-center">
+                  📱
+                </div>
+                <div>
+                  <div class="text-xs text-gray-400">Téléphone</div>
+                  <div class="font-semibold">93 89 69 72 / 98 95 93 23</div>
+                </div>
+              </a>
+
+              <div class="flex items-center gap-4 glass p-4 rounded-xl">
+                <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-violet-600 rounded-lg flex items-center justify-center">
+                  📍
+                </div>
+                <div>
+                  <div class="text-xs text-gray-400">Localisation</div>
+                  <div class="font-semibold">Tsévié, Togo</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Icons -->
+          <div class="glass p-8 rounded-3xl">
+            <h3 class="text-xl font-bold mb-4">Réseaux Sociaux</h3>
+            <div class="flex gap-4">
+              <a href="#" class="social-icon w-12 h-12 glass rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+              <a href="#" class="social-icon w-12 h-12 glass rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+              <a href="#" class="social-icon w-12 h-12 glass rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spline Messenger Robot -->
+      <div class="mt-12 mx-auto w-full max-w-md h-64 opacity-60">
+        <div class="spline-container" id="spline-contact">
+          <img 
+            src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=500&auto=format&fit=crop" 
+            alt="Robot Messager" 
+            class="spline-fallback"
+            loading="lazy"
+          >
+          <!-- TODO: Replace SPLINE_URL_ROBOT_CONTACT with actual Spline scene URL -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="py-8 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p class="text-gray-500 text-sm">
+        © 2025 AGBABLI Yawo Emile | EMILE AG. Tous droits réservés.
+      </p>
+      <p class="text-gray-600 text-xs mt-2">
+        Développé avec passion ❤️ | ESGIS 3e année Systèmes Réseau
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // ==================== MODULE: LOADER ====================
+    class Loader {
+      constructor() {
+        this.loader = document.getElementById('loader');
+        this.progress = document.querySelector('.loader-progress');
+        this.init();
+      }
+
+      init() {
+        let width = 0;
+        const interval = setInterval(() => {
+          width += Math.random() * 30;
+          if (width >= 100) {
+            width = 100;
+            clearInterval(interval);
+            setTimeout(() => this.hide(), 500);
+          }
+          this.progress.style.width = width + '%';
+        }, 200);
+      }
+
+      hide() {
+        gsap.to(this.loader, {
+          opacity: 0,
+          duration: 0.8,
+          onComplete: () => {
+            this.loader.style.display = 'none';
+            document.body.style.overflow = 'auto';
+          }
+        });
+      }
+    }
+
+    // ==================== MODULE: CUSTOM CURSOR ====================
+    class CustomCursor {
+      constructor() {
+        this.cursor = document.querySelector('.cursor');
+        this.follower = document.querySelector('.cursor-follower');
+        this.posX = 0;
+        this.posY = 0;
+        this.mouseX = 0;
+        this.mouseY = 0;
+        
+        if (window.innerWidth > 768) {
+          this.init();
+        }
+      }
+
+      init() {
+        document.addEventListener('mousemove', (e) => {
+          this.mouseX = e.clientX;
+          this.mouseY = e.clientY;
         });
 
-        // Sticky Header Effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            header.classList.toggle('sticky', window.scrollY > 50);
+        this.animate();
+
+        // Grow on hover
+        const hoverElements = document.querySelectorAll('a, button, .glass');
+        hoverElements.forEach(el => {
+          el.addEventListener('mouseenter', () => this.cursor.classList.add('cursor-grow'));
+          el.addEventListener('mouseleave', () => this.cursor.classList.remove('cursor-grow'));
         });
-    </script>
+      }
+
+      animate() {
+        this.posX += (this.mouseX - this.posX) / 9;
+        this.posY += (this.mouseY - this.posY) / 9;
+
+        this.cursor.style.left = this.mouseX - 10 + 'px';
+        this.cursor.style.top = this.mouseY - 10 + 'px';
+        
+        this.follower.style.left = this.posX - 20 + 'px';
+        this.follower.style.top = this.posY - 20 + 'px';
+
+        requestAnimationFrame(() => this.animate());
+      }
+    }
+
+    // ==================== MODULE: NAVIGATION ====================
+    class Navigation {
+      constructor() {
+        this.nav = document.querySelector('nav');
+        this.burger = document.getElementById('burger');
+        this.mobileMenu = document.getElementById('mobile-menu');
+        this.navLinks = document.querySelectorAll('.nav-link');
+        this.sections = document.querySelectorAll('section');
+        this.init();
+      }
+
+      init() {
+        // Burger menu
+        this.burger.addEventListener('click', () => this.toggleMobileMenu());
+
+        // Close menu on link click
+        this.navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            this.mobileMenu.classList.add('hidden');
+            this.animateBurger(false);
+          });
+        });
+
+        // Scroll spy
+        window.addEventListener('scroll', () => this.handleScroll());
+      }
+
+      toggleMobileMenu() {
+        this.mobileMenu.classList.toggle('hidden');
+        this.animateBurger(!this.mobileMenu.classList.contains('hidden'));
+      }
+
+      animateBurger(isOpen) {
+        const spans = this.burger.querySelectorAll('span');
+        if (isOpen) {
+          spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+          spans[1].style.opacity = '0';
+          spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+        } else {
+          spans[0].style.transform = 'none';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'none';
+        }
+      }
+
+      handleScroll() {
+        // Scrolled state
+        if (window.scrollY > 50) {
+          this.nav.classList.add('nav-scrolled');
+        } else {
+          this.nav.classList.remove('nav-scrolled');
+        }
+
+        // Active link
+        let current = '';
+        this.sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          if (window.scrollY >= sectionTop) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        this.navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    }
+
+    // ==================== MODULE: MAGNETIC BUTTONS ====================
+    class MagneticButtons {
+      constructor() {
+        this.buttons = document.querySelectorAll('.btn-magnetic');
+        this.init();
+      }
+
+      init() {
+        this.buttons.forEach(button => {
+          button.addEventListener('mousemove', (e) => this.magnetize(e, button));
+          button.addEventListener('mouseleave', () => this.reset(button));
+        });
+      }
+
+      magnetize(e, button) {
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        gsap.to(button, {
+          x: x * 0.3,
+          y: y * 0.3,
+          duration: 0.3
+        });
+      }
+
+      reset(button) {
+        gsap.to(button, {
+          x: 0,
+          y: 0,
+          duration: 0.3
+        });
+      }
+    }
+
+    // ==================== MODULE: SPLINE INTEGRATION ====================
+    class SplineManager {
+      constructor() {
+        this.splineScenes = {
+          hero: {
+            id: 'spline-hero',
+            url: 'SPLINE_URL_ROBOT_HERO' // TODO: Replace with actual URL
+          },
+          timeline: {
+            id: 'spline-timeline',
+            url: 'SPLINE_URL_ROBOT_TIMELINE' // TODO: Replace with actual URL
+          },
+          skills: {
+            id: 'spline-skills',
+            url: 'SPLINE_URL_ROBOT_SKILLS' // TODO: Replace with actual URL
+          },
+          project: {
+            id: 'spline-project',
+            url: 'SPLINE_URL_ROBOT_PROJECT' // TODO: Replace with actual URL
+          },
+          ceet: {
+            id: 'spline-ceet',
+            url: 'SPLINE_URL_ROBOT_CEET' // TODO: Replace with actual URL
+          },
+          contact: {
+            id: 'spline-contact',
+            url: 'SPLINE_URL_ROBOT_CONTACT' // TODO: Replace with actual URL
+          }
+        };
+
+        if (window.innerWidth >= 768) {
+          this.init();
+        }
+      }
+
+      async init() {
+        for (const [key, scene] of Object.entries(this.splineScenes)) {
+          await this.loadScene(scene.id, scene.url);
+        }
+      }
+
+      async loadScene(containerId, url) {
+        if (url.includes('SPLINE_URL_')) return; // Skip placeholder URLs
+
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        try {
+          const canvas = document.createElement('canvas');
+          canvas.style.width = '100%';
+          canvas.style.height = '100%';
+          container.appendChild(canvas);
+
+          const app = new window.SplineApp(canvas);
+          await app.load(url);
+
+          // Hero salute on load
+          if (containerId === 'spline-hero') {
+            app.setVariable('salute', true);
+          }
+
+          // Follow cursor for hero
+          if (containerId === 'spline-hero') {
+            document.addEventListener('mousemove', (e) => {
+              const x = (e.clientX / window.innerWidth) * 2 - 1;
+              const y = -(e.clientY / window.innerHeight) * 2 + 1;
+              app.setVariable('mouseX', x);
+              app.setVariable('mouseY', y);
+            });
+          }
+        } catch (error) {
+          console.warn(`Failed to load Spline scene ${containerId}:`, error);
+        }
+      }
+    }
+
+    // ==================== MODULE: SCROLL ANIMATIONS ====================
+    class ScrollAnimations {
+      constructor() {
+        gsap.registerPlugin(ScrollTrigger);
+        this.init();
+      }
+
+      init() {
+        // Timeline animations
+        gsap.utils.toArray('.timeline-item').forEach((item, i) => {
+          gsap.to(item, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: i * 0.2,
+            scrollTrigger: {
+              trigger: item,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse'
+            }
+          });
+        });
+
+        // Progress bars
+        ScrollTrigger.batch('.progress-fill', {
+          onEnter: (batch) => {
+            batch.forEach(bar => {
+              const progress = bar.getAttribute('data-progress');
+              gsap.to(bar, {
+                width: progress + '%',
+                duration: 1.5,
+                ease: 'power3.out'
+              });
+            });
+          },
+          start: 'top 80%'
+        });
+
+        // Skills cards hover + robotic arm
+        const skillCards = document.querySelectorAll('.skill-card');
+        skillCards.forEach(card => {
+          card.addEventListener('mouseenter', () => {
+            const skill = card.getAttribute('data-skill');
+            // TODO: Trigger Spline robotic arm animation to point at skill
+            console.log(`Pointing to: ${skill}`);
+          });
+        });
+
+        // CEET bullets stagger
+        gsap.from('.ceet-bullet', {
+          opacity: 0,
+          x: -50,
+          stagger: 0.2,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: '#stage',
+            start: 'top 60%'
+          }
+        });
+
+        // Parallax on images
+        gsap.utils.toArray('img').forEach(img => {
+          gsap.to(img, {
+            y: 50,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: img,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1
+            }
+          });
+        });
+      }
+    }
+
+    // ==================== MODULE: FORM VALIDATION ====================
+    class FormValidator {
+      constructor() {
+        this.form = document.getElementById('contact-form');
+        this.init();
+      }
+
+      init() {
+        this.form.addEventListener('submit', (e) => this.validate(e));
+      }
+
+      validate(e) {
+        e.preventDefault();
+        let isValid = true;
+
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const message = document.getElementById('message');
+
+        // Reset errors
+        [name, email, message].forEach(input => {
+          input.classList.remove('error');
+          document.getElementById(`${input.id}-error`).classList.add('hidden');
+        });
+
+        // Validate name
+        if (name.value.trim() === '') {
+          this.showError(name, 'name-error');
+          isValid = false;
+        }
+
+        // Validate email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value)) {
+          this.showError(email, 'email-error');
+          isValid = false;
+        }
+
+        // Validate message
+        if (message.value.trim() === '') {
+          this.showError(message, 'message-error');
+          isValid = false;
+        }
+
+        if (isValid) {
+          this.submitForm();
+        }
+      }
+
+      showError(input, errorId) {
+        input.classList.add('error');
+        document.getElementById(errorId).classList.remove('hidden');
+      }
+
+      submitForm() {
+        // TODO: Trigger Spline messenger robot envelope animation
+        console.log('Sending envelope animation...');
+
+        // Simulate form submission
+        const button = this.form.querySelector('button');
+        const originalText = button.textContent;
+        button.textContent = 'Envoyé ✓';
+        button.style.background = 'linear-gradient(90deg, #00ff00, #00ff88)';
+        
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.background = '';
+          this.form.reset();
+        }, 3000);
+      }
+    }
+
+    // ==================== INITIALIZATION ====================
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize all modules
+      new Loader();
+      new CustomCursor();
+      new Navigation();
+      new MagneticButtons();
+      new SplineManager();
+      new ScrollAnimations();
+      new FormValidator();
+
+      console.log('%c🚀 EMILE AG Portfolio Loaded', 'color: #00F5FF; font-size: 16px; font-weight: bold;');
+      console.log('%cWelcome to the future ⚡', 'color: #8A2BE2; font-size: 12px;');
+    });
+
+    // ==================== PERFORMANCE OPTIMIZATIONS ====================
+    // Disable heavy animations on low-end devices
+    if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
+      document.body.classList.add('reduce-motion');
+    }
+
+    // Lazy load images
+    if ('loading' in HTMLImageElement.prototype) {
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      images.forEach(img => {
+        img.src = img.src;
+      });
+    }
+  </script>
+<script>(function(){document.addEventListener("click",function(e){var a=e.target.closest("[data-product-id]");if(!a)return;e.preventDefault();var pid=a.getAttribute("data-product-id");if(pid)parent.postMessage({type:"ecto-artifact-link-click",productId:pid},"*")})})();</script>
 </body>
 </html>
